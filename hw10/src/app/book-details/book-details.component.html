@@ -1,0 +1,13 @@
+<h2>Информация о книге</h2>
+<p>{{book?.author?.name}}</p>
+<p>{{book?.genre?.name}}</p>
+<p>{{book?.title}}</p>
+<h3>Комментарии</h3>
+<ul>
+    <li *ngFor="let comment of comments">
+        {{comment.text}}
+    </li>
+</ul>
+<hr>
+<button pButton pRipple type="button" label="Назад" class="p-button-outlined p-button-secondary" (click)="goBack()"></button>
+

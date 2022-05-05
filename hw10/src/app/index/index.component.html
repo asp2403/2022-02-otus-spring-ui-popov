@@ -1,0 +1,26 @@
+<h2>Книги</h2>
+
+<p-table [value]="books">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Автор</th>
+            <th>Название</th>
+            <th>Жанр</th>
+            <th>Комментарии</th>
+            <th></th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-book responsiveLayout="scroll">
+        <tr>
+            <td>{{book.author.name}}</td>
+            <td>{{book.title}}</td>
+            <td>{{book.genre.name}}</td>
+            <td>{{book.commentCount}}</td>
+            <td>
+                <button pButton pRipple icon="pi pi-eye" class="p-button-rounded p-button-text p-button-secondary" routerLink="/book-details/{{book.id}}"></button>
+                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-text p-button-secondary" (click)="editBook(book)"></button>
+                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-text p-button-secondary" (click)="deleteBook(book)"></button>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
