@@ -1,0 +1,7 @@
+.col {
+    flex: 1;
+}
+
+.first {
+    justify-content: space-between;
+}

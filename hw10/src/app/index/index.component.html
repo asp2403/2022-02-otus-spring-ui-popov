@@ -17,9 +17,9 @@
             <td>{{book.genre.name}}</td>
             <td>{{book.commentCount}}</td>
             <td>
-                <button pButton pRipple icon="pi pi-eye" class="p-button-rounded p-button-text p-button-secondary" routerLink="/book-details/{{book.id}}"></button>
-                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-text p-button-secondary" (click)="editBook(book)"></button>
-                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-text p-button-secondary" (click)="deleteBook(book)"></button>
+                <button pButton pRipple icon="pi pi-eye" class="p-button-rounded p-button-text p-button-secondary" title="Информация" routerLink="/book-details/{{book.id}}"></button>
+                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-text p-button-secondary" title="Редактировать" routerLink="/book-edit/{{book.id}}"></button>
+                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-text p-button-secondary" title="Удалить" (click)="deleteBook(book)"></button>
             </td>
         </tr>
     </ng-template>
