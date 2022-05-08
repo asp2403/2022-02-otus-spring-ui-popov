@@ -35,6 +35,13 @@ export class BookService {
       ); 
   }
 
+  updateBook(book: Book): Observable<any> {
+    return this.http.put<void>(this.url, book)
+    .pipe(
+      catchError(this.handleError)
+    );
+  }
+
   private handleError(error: HttpErrorResponse) {
     console.error(error.error);
     return throwError(() => new Error('Error in book.service'));

@@ -1,16 +1,5 @@
-html {
-    font-size: 14px;
-}
-
-.row {
+.field {
     display: flex;
+    flex-direction: column;
     gap: .5rem;
-    flex-direction: row;
-    
-}
-
-.col {
-    display: flex;
-    gap: .5rem;
-    flex-direction: column; 
 }

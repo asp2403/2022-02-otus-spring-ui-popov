@@ -7,6 +7,7 @@ import { Author } from '../domain/author';
 import { Book } from '../domain/book';
 import { Genre } from '../domain/genre';
 import { GenreService } from '../genre.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-book-edit',
@@ -29,7 +30,8 @@ export class BookEditComponent implements OnInit {
     private route: ActivatedRoute,
     private authorService: AuthorService,
     private genreService: GenreService,
-    private bookService: BookService) { }
+    private bookService: BookService,
+    private location: Location) { }
 
   ngOnInit(): void {
     this.fillAuthors();
@@ -54,6 +56,23 @@ export class BookEditComponent implements OnInit {
         this.bookForm.controls['author'].setValue(b.author);
         this.bookForm.controls['genre'].setValue(b.genre);
       });
+    }
+  }
+
+  goBack(): void {
+    this.location.back();
+  }
+
+  onSubmit(): void {
+    if (this.book && this.bookForm.valid) {
+      const book: Book = {
+        id: this.book?.id,
+        title: this.bookForm.controls['title'].value,
+        author: this.bookForm.controls['author'].value,
+        genre: this.bookForm.controls['genre'].value
+      }
+      this.bookService.updateBook(book).subscribe(() => this.goBack())
+      
     }
   }
 

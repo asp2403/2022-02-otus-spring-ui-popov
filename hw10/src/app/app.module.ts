@@ -13,6 +13,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import {InputTextModule} from 'primeng/inputtext';
+import {DividerModule} from 'primeng/divider';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import {InputTextModule} from 'primeng/inputtext';
     TableModule,
     DropdownModule,
     ReactiveFormsModule,
-    InputTextModule
+    InputTextModule,
+    DividerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
