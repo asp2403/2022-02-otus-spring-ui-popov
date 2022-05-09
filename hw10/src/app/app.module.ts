@@ -14,6 +14,8 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import {InputTextModule} from 'primeng/inputtext';
 import {DividerModule} from 'primeng/divider';
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import {ConfirmationService} from 'primeng/api';
 
 @NgModule({
   declarations: [
@@ -32,9 +34,11 @@ import {DividerModule} from 'primeng/divider';
     DropdownModule,
     ReactiveFormsModule,
     InputTextModule,
-    DividerModule
+    DividerModule,
+    ConfirmDialogModule
+    
   ],
-  providers: [],
+  providers: [ConfirmationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

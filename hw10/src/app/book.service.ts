@@ -49,6 +49,17 @@ export class BookService {
     );
   }
 
+  deleteBook(id: string | null): Observable<any> {
+    if (id) {
+      return this.http.delete<void>(this.url + id)
+      .pipe(
+        catchError(this.handleError)
+      );
+      } else {
+        return of(null);
+      }  
+  }
+
   private handleError(error: HttpErrorResponse) {
     console.error(error.error);
     return throwError(() => new Error('Error in book.service'));
