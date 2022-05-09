@@ -20,6 +20,8 @@ export class BookEditComponent implements OnInit {
   genres: Genre[] = [];
   book?: Book;
 
+  private editMode = true;
+
   bookForm = new FormGroup({
     author: new FormControl('', Validators.required),
     genre: new FormControl('', Validators.required),
@@ -48,14 +50,17 @@ export class BookEditComponent implements OnInit {
   }
 
   private init(): void {
-    const id = this.route.snapshot.paramMap.get('id');
-    if (id) {
-      this.bookService.getBook(id).subscribe(b => {
-        this.book = b;
-        this.bookForm.controls['title'].setValue(b.title);
-        this.bookForm.controls['author'].setValue(b.author);
-        this.bookForm.controls['genre'].setValue(b.genre);
-      });
+    this.editMode = this.route.snapshot.routeConfig?.path?.includes('book-edit') ?? false;
+    if (this.editMode) {
+      const id = this.route.snapshot.paramMap.get('id');
+      if (id) {
+        this.bookService.getBook(id).subscribe(b => {
+          this.book = b;
+          this.bookForm.controls['title'].setValue(b.title);
+          this.bookForm.controls['author'].setValue(b.author);
+          this.bookForm.controls['genre'].setValue(b.genre);
+        });
+      }
     }
   }
 
@@ -64,15 +69,23 @@ export class BookEditComponent implements OnInit {
   }
 
   onSubmit(): void {
-    if (this.book && this.bookForm.valid) {
+    if (this.bookForm.valid) {
       const book: Book = {
-        id: this.book?.id,
+        id: this.book?.id ?? null,
         title: this.bookForm.controls['title'].value,
         author: this.bookForm.controls['author'].value,
         genre: this.bookForm.controls['genre'].value
       }
-      this.bookService.updateBook(book).subscribe(() => this.goBack())
-      
+      if (book.id) {
+        this.bookService.updateBook(book).subscribe(() => this.goBack());
+      } else {
+        this.bookService.createBook(book).subscribe(() => this.goBack());
+      }
+
+    } else {
+      Object.keys(this.bookForm.controls).forEach(key => {
+        this.bookForm.controls[key].markAsDirty();
+      });
     }
   }
 

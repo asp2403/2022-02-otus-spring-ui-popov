@@ -1,13 +1,14 @@
 .form {
     display: grid;
     grid-template-columns: 1fr 1fr;   
+    gap: .5rem;
 }
 
 .title, .bottom {
     grid-column: span 2;
 }
 
-.title {
+.title, .author, .genre {
     justify-self: stretch;
 }
 
@@ -17,6 +18,4 @@
     display: flex;
 }
 
-.genre {
-    justify-self: end;
-}
+

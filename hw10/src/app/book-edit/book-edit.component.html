@@ -5,19 +5,21 @@
     <div class="author field">
         <label for="author">Автор</label>
         <p-dropdown id="author" [options]="authors" formControlName="author" placeholder="Выберите автора"
-            optionLabel="name"></p-dropdown>
+            optionLabel="name"  [style]="{'width':'100%'}"></p-dropdown>
+            <small *ngIf="bookForm.controls['author'].invalid && bookForm.controls['author'].dirty" class="p-error block">Поле является обязательным</small>
     </div>
     <div class="genre field">
         <label for="genre">Жанр</label>
         <p-dropdown id="genre" [options]="genres" formControlName="genre" placeholder="Выберите жанр"
-            optionLabel="name"></p-dropdown>
+            optionLabel="name" [style]="{'width':'100%'}"></p-dropdown>
+            <small *ngIf="bookForm.controls['genre'].invalid && bookForm.controls['genre'].dirty" class="p-error block">Поле является обязательным</small>
     </div>
 
     <div class="title field">
 
         <label for="title">Название</label>
         <input type="text" pInputText id="title" formControlName="title" placeholder="Задайте название">
-        <small *ngIf="bookForm.controls['title'].invalid" class="p-error block">Поле является обязательным</small>
+        <small *ngIf="bookForm.controls['title'].invalid && bookForm.controls['title'].dirty" class="p-error block">Поле является обязательным</small>
         <p-divider></p-divider>
 
     </div>
