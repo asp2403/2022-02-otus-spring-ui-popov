@@ -28,6 +28,18 @@ export class BookEditComponent implements OnInit {
     title: new FormControl('', Validators.required)
   });
 
+  get authorControl() {
+    return this.bookForm.controls['author'];
+  }
+
+  get genreControl() {
+    return this.bookForm.controls['genre'];
+  }
+
+  get titleControl() {
+    return this.bookForm.controls['title'];
+  }
+
   constructor(
     private route: ActivatedRoute,
     private authorService: AuthorService,
@@ -56,9 +68,9 @@ export class BookEditComponent implements OnInit {
       if (id) {
         this.bookService.getBook(id).subscribe(b => {
           this.book = b;
-          this.bookForm.controls['title'].setValue(b.title);
-          this.bookForm.controls['author'].setValue(b.author);
-          this.bookForm.controls['genre'].setValue(b.genre);
+          this.titleControl.setValue(b.title);
+          this.authorControl.setValue(b.author);
+          this.genreControl.setValue(b.genre);
         });
       }
     }
@@ -72,9 +84,9 @@ export class BookEditComponent implements OnInit {
     if (this.bookForm.valid) {
       const book: Book = {
         id: this.book?.id ?? null,
-        title: this.bookForm.controls['title'].value,
-        author: this.bookForm.controls['author'].value,
-        genre: this.bookForm.controls['genre'].value
+        title: this.titleControl.value,
+        author: this.authorControl.value,
+        genre: this.genreControl.value
       }
       if (book.id) {
         this.bookService.updateBook(book).subscribe(() => this.goBack());

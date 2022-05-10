@@ -1,6 +1,12 @@
 
 # Клиентское приложение для задания № 10
 
+Библиотека (Книги, Авторы, Жанры, Комментарии к книгам).
+
+CRUD для Книги.
+
+**Технологии:** Angular, PrimeNG Components.
+
 ## Hw10
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.5.
