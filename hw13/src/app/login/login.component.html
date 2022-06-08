@@ -1,0 +1,28 @@
+<h2>Вход в систему</h2>
+<form [formGroup]="loginForm" class="form" (ngSubmit)="onSubmit()">
+
+    <div class="username field">
+        <label for="username">Имя пользователя</label>
+        <input type="text" pInputText id="username" formControlName="username" placeholder="Задайте имя пользователя">
+        <small *ngIf="usernameControl.invalid && usernameControl.dirty" class="p-error block">Поле является обязательным</small>
+    </div>
+
+    <div class="password field">
+        <label for="password">Пароль</label>
+        <input type="password" pInputText id="password" formControlName="password" placeholder="Задайте пароль">
+        <small *ngIf="passwordControl.invalid && passwordControl.dirty" class="p-error block">Поле является обязательным</small>
+    </div>
+
+    <small *ngIf="errorMsg" class="p-error block">{{errorMsg}}</small>
+
+    <p-divider></p-divider>
+
+    <div class="bottom">
+        <button type="submit" pButton pRipple label="OK" class="p-button-outlined p-button-primary"></button>
+        <button pButton pRipple type="button" label="Отмена" class="p-button-outlined p-button-secondary"
+            (click)="goBack()"></button>
+
+    </div>
+
+</form>
+

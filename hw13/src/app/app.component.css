@@ -1,0 +1,37 @@
+.wrapper {
+  display: grid;
+  grid-template-rows: 50px 1fr;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.header {
+  background-color: black;
+  padding: 10px 20px;
+  height: 50px;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+}
+
+.title {
+  font-size: 1.5rem;
+ 
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
+.logo, .user-menu {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+
+
+

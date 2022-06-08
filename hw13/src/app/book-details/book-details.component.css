@@ -1,0 +1,30 @@
+.form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;   
+}
+
+.title, .comments, .bottom {
+    grid-column: span 2;
+}
+
+.title {
+    font-size: 1.3rem;
+    justify-self: center;
+}
+
+.author, .genre, .comments {
+    font-size: 1.2rem;
+}
+
+.bottom {
+    justify-self: center;
+}
+
+.genre {
+    justify-self: end;
+}
+
+.comment-author {
+    font-style: italic;
+    font-weight: lighter;
+}
