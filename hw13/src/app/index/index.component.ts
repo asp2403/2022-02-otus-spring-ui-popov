@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfirmationService } from 'primeng/api';
+import { AuthService } from '../auth.service';
 import { BookService } from '../book.service';
 import { Book } from '../domain/book';
 
@@ -12,7 +13,7 @@ export class IndexComponent implements OnInit {
 
   books: Book[] = [];
 
-  constructor(private bookService: BookService, private confirmationService: ConfirmationService) { }
+  constructor(private bookService: BookService, private confirmationService: ConfirmationService, private authService: AuthService) { }
 
   ngOnInit(): void {
     this.loadBooks();
@@ -33,5 +34,9 @@ export class IndexComponent implements OnInit {
         this.bookService.deleteBook(book.id).subscribe(() => this.loadBooks())
       
     });
+  }
+
+  hasRole(roleName: string): boolean {
+    return this.authService.hasRole(roleName);
   }
 }

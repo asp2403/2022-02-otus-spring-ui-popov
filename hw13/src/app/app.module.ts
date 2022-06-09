@@ -17,7 +17,9 @@ import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {ConfirmationService} from 'primeng/api';
 import { LoginComponent } from './login/login.component';
 import {MenuModule} from 'primeng/menu';
-import {MenuItem} from 'primeng/api';
+import { httpInterceptorProviders } from './http-interceptors';
+import { CommentEditComponent } from './comment-edit/comment-edit.component';
+import {InputTextareaModule} from 'primeng/inputtextarea';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import {MenuItem} from 'primeng/api';
     IndexComponent,
     BookDetailsComponent,
     BookEditComponent,
-    LoginComponent
+    LoginComponent,
+    CommentEditComponent
   ],
   imports: [
     BrowserModule,
@@ -39,9 +42,10 @@ import {MenuItem} from 'primeng/api';
     InputTextModule,
     DividerModule,
     ConfirmDialogModule,
-    MenuModule
+    MenuModule,
+    InputTextareaModule
   ],
-  providers: [ConfirmationService],
+  providers: [ConfirmationService, httpInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

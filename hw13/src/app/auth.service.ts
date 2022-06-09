@@ -24,4 +24,12 @@ export class AuthService {
     return this.userDetails.roles.some(role => role.authority == 'ROLE_' + roleName);
   }
 
+  hasAnyRole(roleNames: string[]): boolean {
+    return this.userDetails.roles.some(role => roleNames.indexOf(role.authority.substring(5)) > -1);
+  }
+
+  getAuthToken(): string | null {
+    return this.userDetails.token;
+  }
+
 }

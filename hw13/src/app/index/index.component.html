@@ -2,7 +2,7 @@
 
 <div class="wrapper">
 
-    <button pButton pRipple type="button" label="Добавить книгу" class="p-button-outlined p-button-primary"
+    <button pButton pRipple *ngIf="hasRole('ADMIN')" type="button" label="Добавить книгу" class="p-button-outlined p-button-primary"
         routerLink="/add-book"></button>
 
     <p-table class="table" [value]="books">
@@ -24,10 +24,10 @@
                 <td>
                     <button pButton pRipple icon="pi pi-eye" class="p-button-rounded p-button-text p-button-secondary"
                         title="Информация" routerLink="/book-details/{{book.id}}"></button>
-                    <button pButton pRipple icon="pi pi-pencil"
+                    <button pButton pRipple *ngIf="hasRole('ADMIN')" icon="pi pi-pencil"
                         class="p-button-rounded p-button-text p-button-secondary" title="Редактировать"
                         routerLink="/book-edit/{{book.id}}"></button>
-                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-text p-button-secondary"
+                    <button pButton pRipple *ngIf="hasRole('ADMIN')" icon="pi pi-trash" class="p-button-rounded p-button-text p-button-secondary"
                         title="Удалить" (click)="deleteBook(book)"></button>
                 </td>
             </tr>

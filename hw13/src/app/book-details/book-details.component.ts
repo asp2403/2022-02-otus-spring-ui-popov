@@ -4,6 +4,9 @@ import { BookService } from '../book.service';
 import { Book } from '../domain/book';
 import { Comment } from '../domain/comment';
 import { Location } from '@angular/common';
+import { AuthService } from '../auth.service';
+import { ConfirmationService } from 'primeng/api';
+import { CommentService } from '../comment.service';
 
 @Component({
   selector: 'app-book-details',
@@ -15,7 +18,8 @@ export class BookDetailsComponent implements OnInit {
   book?: Book;
   comments?: Comment[];
 
-  constructor(private route: ActivatedRoute, private bookService: BookService, private location: Location) { }
+  constructor(private route: ActivatedRoute, private bookService: BookService, private location: Location, 
+    private authService: AuthService, private confirmationService: ConfirmationService, private commentService: CommentService) { }
 
   ngOnInit(): void {
     this.getBook()
@@ -38,6 +42,22 @@ export class BookDetailsComponent implements OnInit {
 
   goBack(): void {
     this.location.back();
+  }
+
+  hasAnyRole(roleNames: string[]): boolean {
+    return this.authService.hasAnyRole(roleNames);
+  }
+
+  deleteComment(comment: Comment): void {
+    this.confirmationService.confirm({
+      message: 'Вы действительно хотите удалить комментарий?',
+      accept: () => {
+        if (comment.id) {
+          this.commentService.deleteComment(comment.id).subscribe(() => this.getBookComments());
+        }  
+      }
+      
+    });
   }
 
   

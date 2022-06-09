@@ -5,10 +5,13 @@
     <p class="title">{{book?.title}}</p>
     <h3>Комментарии</h3>
     <div class="comments">
-
+        <button pButton pRipple *ngIf="hasAnyRole(['USER', 'MODERATOR', 'ADMIN'])" type="button" label="Добавить комментарий" class="p-button-outlined p-button-primary"
+        routerLink="/book/{{book?.id}}/add-comment"></button>
         <ul>
             <li *ngFor="let comment of comments">
-                {{comment.text}} <span class="comment-author">   &nbsp;&nbsp;&nbsp;   {{comment.author}}</span>
+                {{comment.text}} <span class="comment-author">   &nbsp;&nbsp;&nbsp;   {{comment.author}}</span> 
+                <button pButton pRipple *ngIf="hasAnyRole(['MODERATOR', 'ADMIN'])" icon="pi pi-trash" class="p-button-rounded p-button-text p-button-secondary"
+                        title="Удалить" (click)="deleteComment(comment)"></button>
             </li>
         </ul>
         <p-divider></p-divider>
@@ -19,3 +22,13 @@
             (click)="goBack()"></button>
     </div>
 </div>
+
+<p-confirmDialog #cd icon="pi pi-exclamation-triangle" [style]="{width: '50vw'}">
+    <ng-template pTemplate="header">
+        <h3>Подтверждение</h3>
+    </ng-template>
+    <ng-template pTemplate="footer">
+        <button type="button" pButton icon="pi pi-trash" label="Удалить комментарий" class="p-button-outlined p-button-danger" (click)="cd.accept()"></button>
+        <button type="button" pButton label="Нет" class="p-button-outlined p-button-secondary" (click)="cd.reject()"></button> 
+    </ng-template>
+</p-confirmDialog>

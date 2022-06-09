@@ -4,6 +4,7 @@ import { IndexComponent } from './index/index.component';
 import { BookDetailsComponent } from './book-details/book-details.component';
 import { BookEditComponent } from './book-edit/book-edit.component';
 import { LoginComponent } from './login/login.component';
+import { CommentEditComponent } from './comment-edit/comment-edit.component';
 
 const routes: Routes = [
   { path: 'index', component: IndexComponent },
@@ -11,6 +12,7 @@ const routes: Routes = [
   { path: 'book-edit/:id', component: BookEditComponent },
   { path: 'add-book', component: BookEditComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'book/:id/add-comment', component: CommentEditComponent },
   { path: '', redirectTo: '/index', pathMatch: 'full' }
 ];
 

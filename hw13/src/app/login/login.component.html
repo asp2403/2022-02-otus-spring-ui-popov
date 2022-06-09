@@ -1,15 +1,15 @@
 <h2>Вход в систему</h2>
-<form [formGroup]="loginForm" class="form" (ngSubmit)="onSubmit()">
+<form [formGroup]="loginForm" class="form" method="post" (ngSubmit)="onSubmit()">
 
     <div class="username field">
         <label for="username">Имя пользователя</label>
-        <input type="text" pInputText id="username" formControlName="username" placeholder="Задайте имя пользователя">
+        <input type="text" name="username" pInputText id="username" formControlName="username" placeholder="Задайте имя пользователя">
         <small *ngIf="usernameControl.invalid && usernameControl.dirty" class="p-error block">Поле является обязательным</small>
     </div>
 
     <div class="password field">
         <label for="password">Пароль</label>
-        <input type="password" pInputText id="password" formControlName="password" placeholder="Задайте пароль">
+        <input type="password" name="password" pInputText id="password" formControlName="password" placeholder="Задайте пароль">
         <small *ngIf="passwordControl.invalid && passwordControl.dirty" class="p-error block">Поле является обязательным</small>
     </div>
 
