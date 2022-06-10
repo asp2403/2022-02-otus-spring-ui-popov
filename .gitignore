@@ -1,3 +1,5 @@
 .vscode
 /hw10/.editorconfig
 /hw10/.browserslistrc
+.angular
+*node_modules*
