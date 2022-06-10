@@ -9,9 +9,11 @@
         routerLink="/book/{{book?.id}}/add-comment"></button>
         <ul>
             <li *ngFor="let comment of comments">
+                <div class="comment">
                 {{comment.text}} <span class="comment-author">   &nbsp;&nbsp;&nbsp;   {{comment.author}}</span> 
                 <button pButton pRipple *ngIf="hasAnyRole(['MODERATOR', 'ADMIN'])" icon="pi pi-trash" class="p-button-rounded p-button-text p-button-secondary"
                         title="Удалить" (click)="deleteComment(comment)"></button>
+                </div>
             </li>
         </ul>
         <p-divider></p-divider>

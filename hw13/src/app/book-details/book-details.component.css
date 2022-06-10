@@ -28,3 +28,8 @@
     font-style: italic;
     font-weight: lighter;
 }
+
+.comment {
+    display: flex;
+    align-items: center;
+}
