@@ -1,0 +1,22 @@
+<div class="wrapper p-component">
+  <div class="header">
+    <div class="logo">
+      <i class="pi pi-book" style="font-size: 25px;"></i>
+      <div class="title">
+        Библиотека
+      </div>
+    </div>
+
+    <div class="user-menu">
+      <i class="pi pi-user"></i>
+      <a *ngIf="hasRole('ANONYMOUS')" routerLink="/login">Вход в систему</a>
+      <div *ngIf="!hasRole('ANONYMOUS')">
+        <a href="javascript:void(0)" (click)="menu.toggle($event)">{{userDetails.fullName}}</a>
+        <p-menu #menu [popup]="true" [model]="menuItems"></p-menu>
+      </div>
+    </div>
+  </div>
+  <div class="content">
+    <router-outlet></router-outlet>
+  </div>
+</div>

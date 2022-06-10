@@ -1,0 +1,19 @@
+<h2>Комментарий</h2>
+<form [formGroup]="formComment" class="form" (ngSubmit)="onSubmit()">
+
+    <div class="comment field">
+        <label for="comment">Оставьте комментарий</label>
+        <textarea id="comment" rows="5" cols="30" pInputTextarea formControlName="comment" placeholder="Текст комментария"></textarea>
+        <small *ngIf="commentControl.invalid && commentControl.dirty" class="p-error block">Поле является обязательным</small>
+    </div>
+
+    <p-divider></p-divider>
+
+    <div class="bottom">
+        <button type="submit" pButton pRipple label="OK" class="p-button-outlined p-button-primary"></button>
+        <button pButton pRipple type="button" label="Отмена" class="p-button-outlined p-button-secondary"
+            (click)="goBack()"></button>
+
+    </div>
+
+</form>
