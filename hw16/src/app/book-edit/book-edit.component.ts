@@ -48,31 +48,30 @@ export class BookEditComponent implements OnInit {
     private location: Location) { }
 
   ngOnInit(): void {
+    this.init();
     this.fillAuthors();
     this.fillGenres();
-    this.init();
   }
 
   private fillAuthors(): void {
-    this.authorService.getAuthors().subscribe(authors => this.authors = authors);
+    this.authorService.getAuthors().subscribe(authorList => {
+      this.authors = authorList._embedded.authors;
+      this.authorControl.setValue(this.book?.author.name);
+    });
   }
 
   private fillGenres(): void {
-    this.genreService.getGenres().subscribe(genres => this.genres = genres);
+    this.genreService.getGenres().subscribe(genreList => {
+      this.genres = genreList._embedded.genres;
+      this.genreControl.setValue(this.book?.genre.name);
+    });
   }
 
   private init(): void {
     this.editMode = this.route.snapshot.routeConfig?.path?.includes('book-edit') ?? false;
     if (this.editMode) {
-      const id = this.route.snapshot.paramMap.get('id');
-      if (id) {
-        this.bookService.getBook(id).subscribe(b => {
-          this.book = b;
-          this.titleControl.setValue(b.title);
-          this.authorControl.setValue(b.author);
-          this.genreControl.setValue(b.genre);
-        });
-      }
+      this.book = history.state.data;
+      this.titleControl.setValue(this.book?.title);
     }
   }
 
@@ -81,14 +80,17 @@ export class BookEditComponent implements OnInit {
   }
 
   onSubmit(): void {
+    
     if (this.bookForm.valid) {
       const book: Book = {
-        id: this.book?.id ?? null,
         title: this.titleControl.value,
-        author: this.authorControl.value,
-        genre: this.genreControl.value
+        author: {name: this.authorControl.value},
+        genre: {name: this.genreControl.value},
+        comments: this.book?.comments,
+        _links: this.book?._links
       }
-      if (book.id) {
+      
+      if (this.editMode) {
         this.bookService.updateBook(book).subscribe(() => this.goBack());
       } else {
         this.bookService.createBook(book).subscribe(() => this.goBack());

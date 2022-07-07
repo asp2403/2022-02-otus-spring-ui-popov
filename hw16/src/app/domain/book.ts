@@ -3,7 +3,6 @@ import { Genre } from "./genre";
 import { Comment } from "./comment";
 
 export interface Book {
-    id: string | null;
     title: string;
     author: Author;
     genre: Genre;

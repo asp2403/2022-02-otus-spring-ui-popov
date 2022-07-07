@@ -27,15 +27,22 @@ export class IndexComponent implements OnInit {
     this.confirmationService.confirm({
       message: 'Вы действительно хотите удалить книгу "' + book.title + '"?',
       accept: () => 
-        this.bookService.deleteBook(book.id).subscribe(() => this.loadBooks())
+        this.bookService.deleteBook(book).subscribe(() => this.loadBooks())
       
     });
   }
 
   showDetails(book: Book): void {
-    let href: string | undefined = book._links?.self.href;
+    let href = book._links?.self.href;
     if (href) {
       this.bookService.getBook(href).subscribe(book => this.router.navigate(['/book-details'], {state: {data: book}}));
+    }
+  }
+
+  editBook(book: Book): void {
+    let href = book._links?.self.href;
+    if (href) {
+      this.bookService.getBook(href).subscribe(book => this.router.navigate(['/book-edit'], {state: {data: book}}));
     }
   }
 }

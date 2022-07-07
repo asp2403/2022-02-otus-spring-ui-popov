@@ -1,4 +1,9 @@
 export interface Genre {
-    id: string;
     name: string;
+}
+
+export interface GenreList {
+    _embedded: {
+        genres: Genre[];
+    }
 }

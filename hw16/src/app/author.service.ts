@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError, Observable, throwError } from 'rxjs';
-import { Author } from './domain/author';
+import { Author, AuthorList } from './domain/author';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +12,8 @@ export class AuthorService {
 
   constructor(private http: HttpClient) { }
 
-  getAuthors(): Observable<Author[]> {
-    return this.http.get<Author[]>(this.url)
+  getAuthors(): Observable<AuthorList> {
+    return this.http.get<AuthorList>(this.url)
       .pipe(
         catchError(this.handleError)
       );

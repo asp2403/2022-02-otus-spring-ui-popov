@@ -29,10 +29,15 @@ export class BookService {
   }
 
   updateBook(book: Book): Observable<any> {
-    return this.http.put<void>(this.url, book)
-    .pipe(
-      catchError(this.handleError)
-    );
+    let href = book._links?.self.href;
+    if (href) {
+      return this.http.put<void>(href, book)
+      .pipe(
+        catchError(this.handleError)
+      );
+    } else {
+      return of(null);
+    }
   }
 
   createBook(book: Book): Observable<any> {
@@ -42,9 +47,10 @@ export class BookService {
     );
   }
 
-  deleteBook(id: string | null): Observable<any> {
-    if (id) {
-      return this.http.delete<void>(this.url + id)
+  deleteBook(book: Book): Observable<any> {
+    let href = book._links?.self.href;
+    if (href) {
+      return this.http.delete<void>(href)
       .pipe(
         catchError(this.handleError)
       );

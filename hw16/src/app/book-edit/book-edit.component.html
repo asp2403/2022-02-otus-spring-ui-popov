@@ -5,13 +5,13 @@
     <div class="author field">
         <label for="author">Автор</label>
         <p-dropdown id="author" [options]="authors" formControlName="author" placeholder="Выберите автора"
-            optionLabel="name"  [style]="{'width':'100%'}"></p-dropdown>
+        optionLabel="name" optionValue="name" [style]="{'width':'100%'}"></p-dropdown>
             <small *ngIf="authorControl.invalid && authorControl.dirty" class="p-error block">Поле является обязательным</small>
     </div>
     <div class="genre field">
         <label for="genre">Жанр</label>
         <p-dropdown id="genre" [options]="genres" formControlName="genre" placeholder="Выберите жанр"
-            optionLabel="name" [style]="{'width':'100%'}"></p-dropdown>
+            optionLabel="name" optionValue="name" [style]="{'width':'100%'}"></p-dropdown>
             <small *ngIf="genreControl.invalid && genreControl.dirty" class="p-error block">Поле является обязательным</small>
     </div>
 
