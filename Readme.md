@@ -1,6 +1,4 @@
-﻿# Попов Александр
-## Курс: Java Spring Framework
-### Группа 2022-02
+﻿## Курс: Java Spring Framework
 
 Репозиторий для SPA приложений к сервисам на Java Spring Framework.
 
